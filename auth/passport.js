@@ -9,6 +9,7 @@ module.exports = function(passport) {
         scope: 'user_read'
     },
     function(accessToken, refreshToken, profile, done) {
+        profile.accessToken = accessToken;
         return done(null, profile);
     }));
 
