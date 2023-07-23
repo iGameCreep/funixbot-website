@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/commands.js"></script>
+    <link rel="stylesheet" href="../default.css">
+    <link rel="shortcut icon" href="../assets/funixbot.png" type="image/x-icon">
+    <title>FunixBot - Commandes Twitch</title>
+</head>
+<body>
+    <div class="app">
+        <main class="app-main">
+            <div class="wrapper">
+                <div class="page">
+                    <div class="page-inner">
+                        <div class="page-section">
+                            <div class="section-block">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <% commands.forEach(command => { %>
+                                            <% let date = new Date(command.createdAt); %>
+                                            <div class="card">
+                                                <div class="card-header"><figure class="user-avatar user-avatar-lg"><img src="../assets/funixbot.png"></figure> !<%= command.command %></div>
+                                                <div class="card-body">
+                                                    <p class="card-text"><strong>Commande:</strong> !<%= command.command %> </p>
+                                                    <p class="card-text"><strong>Message:</strong> <%= command.message ?? command.response %> </p>
+                                                    <% if (command.createdAt) { %> <p class="card-text"><strong>Crée le:</strong> <%= date.getDate() %> <%= monthNames[date.getMonth()] %> <%= date.getFullYear() %> à <%= date.getUTCHours() %>h<%= date.getUTCMinutes() %> </p> <% } %>
+                                                    <% if (command.id) { %> <p class="card-text"><strong>ID:</strong> <%= command.id %> </p> <% } %>
+                                                    <% if (command.aliases) { %> <p class="card-text"><strong>Alias:</strong> <%= command.aliases.join(', ') %> </p> <% } %>
+                                                </div>
+                                            </div>
+                                        <% }) %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
