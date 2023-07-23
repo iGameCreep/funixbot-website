@@ -7,7 +7,6 @@ router.get('/', ensureAuthenticated,(req,res) =>{
 });
 
 router.get('/home', ensureAuthenticated, (req, res) => {
-  console.log(req.user)
   res.render('home', {
     user: req.user
   });
