@@ -7,7 +7,7 @@ function getViewersExp(page, accessToken) {
         await fetch(`https://api.funixgaming.fr/funixbot/user/exp?page=${page}&elemsPerPage=${elementsPerPage}`).then(async response => {
             if (response.ok) {
                 const body = await response.json();
-                body.content.sort((a, b) => a.level - b.level);
+                body.content.sort((a, b) => b.level - a.level);
 
                 const users = await getTwitchUserDisplayNamesByIds(body, accessToken);
 
