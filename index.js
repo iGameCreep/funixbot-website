@@ -23,6 +23,7 @@ require('./auth/passport')(passport);
 
 app.use('/', require('./routes/home'));
 app.use('/', require('./routes/commands'));
+app.use('/', require('./routes/exp'));
 
 app.use('/', require('./routes/login'));
 

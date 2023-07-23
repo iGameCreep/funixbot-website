@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/commands.js"></script>
+    <link rel="stylesheet" href="../default.css">
+    <link rel="shortcut icon" href="../assets/funixbot.png" type="image/x-icon">
+    <title>FunixBot - Exp des viewers Twitch</title>
+</head>
+<body>
+    <div class="app">
+        <main class="app-main">
+            <div class="wrapper">
+                <div class="page">
+                    <div class="page-inner">
+                        <div class="page-section">
+                            <div class="section-block">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <% data.content.forEach(viewer => { %>
+                                            <% let date = new Date(viewer.createdAt); %>
+                                            <% let update = new Date(viewer.updatedAt) %>
+                                            <div class="card">
+                                                <div class="card-header"><figure class="user-avatar user-avatar-lg"><img src="../assets/funixbot.png"></figure> <%= viewer.display_name %></div>
+                                                <div class="card-body">
+                                                    <p class="card-text"><strong>Viewer:</strong> <%= viewer.display_name %> </p>
+                                                    <p class="card-text"><strong>ID Twitch:</strong> <%= viewer.twitchUserId %> </p>
+                                                    <p class="card-text"><strong>Level:</strong> <%= viewer.level %> </p>
+                                                    <p class="card-text"><strong>XP:</strong> <%= viewer.xp %> </p>
+                                                    <p class="card-text"><strong>XP manquant:</strong> <%= viewer.xpNextLevel %> </p>
+                                                    <p class="card-text"><strong>Crée le:</strong> <%= date.getDate() %> <%= monthNames[date.getMonth()] %> <%= date.getFullYear() %> à <%= date.getUTCHours() %>h<%= date.getUTCMinutes() %> </p>
+                                                    <% if (viewer.updatedAt) { %><p class="card-text"><strong>Mis à jour le:</strong> <%= update.getDate() %> <%= monthNames[update.getMonth()] %> <%= update.getFullYear() %> à <%= update.getUTCHours() %>h<%= update.getUTCMinutes() %> </p> <% } %>
+                                                </div>
+                                            </div>
+                                        <% }) %>
+                                        <div style="display: flex; align-items: center; justify-content: center;">
+                                            <a href="?page=<%= data.actualPage - 1 %>" class="btn btn-primary">Previous Page</a>
+                                            <p style="margin: 0 10px;">Page <%= data.actualPage %>/<%= data.totalPages %></p>
+                                            <a href="?page=<%= data.actualPage + 1 %>" class="btn btn-primary">Next Page</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
