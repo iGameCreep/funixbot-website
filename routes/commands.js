@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { ensureAuthenticated } = require('../auth/auth');
-const { getCommands } = require('../funixAPI/commands');
+const { getCommands } = require('../services/funixAPI/commands');
 
 router.get('/commands', ensureAuthenticated, async (req, res) => {
     const commands = await getCommands();
